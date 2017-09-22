@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="700.0" maxWidth="800.0" minHeight="700.0" minWidth="800.0" prefHeight="700.0" prefWidth="800.0" stylesheets="@/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="700.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="800.0">
+               <children>
+                  <ButtonBar layoutX="235.0" layoutY="333.0" prefHeight="35.0" prefWidth="300.0" AnchorPane.bottomAnchor="332.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="265.0" AnchorPane.topAnchor="333.0">
+                     <buttons>
+                        <ToggleButton accessibleRole="BUTTON" maxHeight="33.0" maxWidth="135.0" mnemonicParsing="false" onAction="#handleProspect" prefHeight="33.0" prefWidth="135.0" styleClass="button" stylesheets="@/DarkTheme.css" text="ADHERANT" />
+                        <ToggleButton maxHeight="33.0" maxWidth="135.0" mnemonicParsing="false" onAction="#handleRepresentant" prefHeight="33.0" prefWidth="135.0" styleClass="button" text="REPRESENTATION" />
+                     </buttons>
+                  </ButtonBar>
+                  <ImageView fitHeight="275.0" fitWidth="309.0" layoutX="266.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Ressource/logo-mpt-2017.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

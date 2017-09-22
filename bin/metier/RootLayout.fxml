@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.View.RootLayoutController">
+   <top>
+      <MenuBar fx:id="root" stylesheets="@/DarkTheme.css" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Fichier">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleOpen" text="Ouvrir" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSave" text="Enregistrer" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Enregistrer sous..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Fermer" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Vue">
+            <items>
+                  <MenuItem fx:id="prospect" mnemonicParsing="false" onAction="#handleProspect" text="Prospect" />
+              <MenuItem mnemonicParsing="false" onAction="#handleRepresentant" text="Representant" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleClient" text="Client" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Aide">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleAbout" text="A propos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
