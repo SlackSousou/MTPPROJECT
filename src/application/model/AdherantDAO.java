@@ -39,10 +39,8 @@ public class AdherantDAO {
     	Adherant ad =null;
     	if(rs.next()){
     		ad = new Adherant();
-    		ad.setId(rs.getInt("adherant_id"));
-    		ad.setNom(rs.getString("nom"));
-    		ad.setPrenom(rs.getString("prenom"));
-    		ad.setAdresse(rs.getString("adresse"));
+    		ad.setNom(rs.getString("nomAdherent"));
+      		ad.setPrenom(rs.getString("prenomAdherent"));
     				
     		
     	}
@@ -95,14 +93,14 @@ public class AdherantDAO {
   //*************************************
     //INSERT an Adherant
     //*************************************
-    public static void insertAdherant( String nom, String prenom, String adresse) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, ParseException {
+    public static void insertAdherant( String nom, String prenom) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, ParseException {
     	//Declare an INSERT statement
         String updateStmt =
                 
-                        "INSERT INTO adherants\n" +
+                        "Select INTO adherants\n" +
                         "(nom, prenom, adresse)\n" +
                         "VALUES\n" +
-                        "('"+nom+"', '"+prenom+"','"+adresse+"');\n"; 
+                        "('"+nom+"', '"+prenom+"');\n"; 
                         
         //Execute INSERT operation
         try {
@@ -112,46 +110,5 @@ public class AdherantDAO {
             throw e;
         }
     }
-    
-    //*************************************
-    //DELETE an client
-    //*************************************
-    public static void deleteAdherantWithId (String adherantId) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        //Declare a DELETE statement
-        String updateStmt =
-                
-                        "   DELETE FROM adherants\n" +
-                        "         WHERE adherant_id ="+ adherantId +";\n"
-                         ;
- 
-        //Execute UPDATE operation
-        try {
-            DBUtil.dbExecuteUpdate(updateStmt);
-        } catch (SQLException e) {
-            System.out.print("Error occurred while DELETE Operation: " + updateStmt + "\n" + e);
-            throw e;
-        }
-    }
-    
-  //*************************************
-    //UPDATE an adherant informations
-    //*************************************
-    public static void updateAdherant (int adherantId, String nom, String prenom, String adresse ) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        //Declare an UPDATE statement
-        String updateStmt =
-                        "UPDATE adherants\n" +
-                        "SET nom ='" + nom + "', prenom ='" + prenom + "', adresse ='" + adresse + "' \n" +
-                        "WHERE adherant_id = " + adherantId + ";\n"
-                        ; 
- 
-        //Execute UPDATE operation
-        try {
-            DBUtil.dbExecuteUpdate(updateStmt);
-        } catch (SQLException e) {
-            System.out.print("Error occurred while UPDATE Operation: " + updateStmt + "\n" + e);
-            throw e;
-        }
-    }
-       
     
 }

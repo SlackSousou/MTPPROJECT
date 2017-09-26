@@ -68,11 +68,7 @@ public class Representation {
 			Representation.tarif = tarif;
 		}
 
-		@Override
-		public String toString() {
-			return "Representation [numRepresentation=" + numRepresentation + ", dateRepresentation="
-					+ dateRepresentation + "]";
-		}
+		
 
 
 		//*****************************METHODE*******************************
