@@ -4,9 +4,6 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import java.sql.*;
  
-/**
- * Created by ONUR BASKIRT on 22.02.2016.
- */
 public class DBUtil {
     //Declare JDBC Driver
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -17,10 +14,10 @@ public class DBUtil {
     //Connection String
     //String connStr = "jdbc:oracle:thin:Username/Password@IP:Port/SID";
     //Username=HR, Password=HR, IP=localhost, IP=1521, SID=xe
-    private static final String connStr = "jdbc:mysql://localhost:3306/ToutBois";
+    private static final String connStr = "jdbc:mysql://localhost:3306/maisonpourtous";
  
      
-    //Connect to DB
+    //Fonction Permettant de se connecté a la base de donné
     public static void dbConnect() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         //Setting Oracle JDBC Driver
         try {
@@ -54,8 +51,8 @@ public class DBUtil {
         }
     }
  
-    //DB Execute Query Operation
-    public static ResultSet dbExecuteQuery(String queryStmt) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    //Fonction permettant d'envoyer les requette SQL
+    public static ResultSet dbExecuteQuery(String ma_requete) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         //Declare statement, resultSet and CachedResultSet as null
         Statement stmt = null;
         ResultSet resultSet = null;
@@ -63,13 +60,13 @@ public class DBUtil {
         try {
             //Connect to DB (Establish Oracle Connection)
             dbConnect();
-            System.out.println("Select statement: " + queryStmt + "\n");
+            System.out.println("Select statement: " + ma_requete + "\n");
  
             //Create statement
             stmt = conn.createStatement();
  
             //Execute select (query) operation
-            resultSet = stmt.executeQuery(queryStmt);
+            resultSet = stmt.executeQuery(ma_requete);
  
             //CachedRowSet Implementation
             //In order to prevent "java.sql.SQLRecoverableException: Closed Connection: next" error
@@ -95,8 +92,8 @@ public class DBUtil {
         return crs;
     }
  
-    //DB Execute Update (For Update/Insert/Delete) Operation
-    public static void dbExecuteUpdate(String sqlStmt) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    //Fonction permettant d'envoyer les modif de mes requel SQL
+    public static void dbExecuteUpdate(String ma_requete_de_modif) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         //Declare statement as null
         Statement stmt = null;
         try {
@@ -105,7 +102,7 @@ public class DBUtil {
             //Create Statement
             stmt = conn.createStatement();
             //Run executeUpdate operation with given sql statement
-            stmt.executeUpdate(sqlStmt);
+            stmt.executeUpdate(ma_requete_de_modif);
         } catch (SQLException e) {
             System.out.println("Problem occurred at executeUpdate operation : " + e);
             throw e;

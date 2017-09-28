@@ -1,6 +1,6 @@
 package application;
 
-import application.model.Adherant;
+import application.model.Adherent;
 import application.model.Representation;
 import application.view.PrincipaleViewController;
 import javafx.application.Application;
@@ -22,7 +22,7 @@ public class Main extends Application {
 	 * The data as an observable list of Persons.
 	 */
     private ObservableList<Representation> representationData = FXCollections.observableArrayList();
-	private ObservableList<Adherant> adherantData = FXCollections.observableArrayList();
+	private ObservableList<Adherent> adherantData = FXCollections.observableArrayList();
 	
 	
 	/**
@@ -33,7 +33,7 @@ public class Main extends Application {
     public ObservableList<Representation> getRepresentationData() {
 		return representationData;
 	}
-    public ObservableList<Adherant> getAdherantData() {
+    public ObservableList<Adherent> getAdherantData() {
   		return adherantData;
   	}
 
