@@ -51,20 +51,20 @@ public class PrincipaleViewController {
 
 	}
 
-
+	// METHODE utilisé pour les Reservation
 	public void setReservation(Adherent adherent , Representation representation) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
 		this.adherent = adherent;
 		this.representation = representation;
 		ObservableList<Adherent> optionsAd =  AdherentDAO.ChercherAdherentsListe();
 		ObservableList<Representation> optionsRep =  RepresentationDAO.ChercherRepresentationsListe();
 		CalculTarif();
-		}
-		
-	
+	}
 
+
+	//ComboBox Adherant
 	public ObservableList<Adherent> searchAdherent() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
-			//Get all Employees information
+			//Donne toute les information de "Adherant"
 			ObservableList<Adherent> adData = AdherentDAO.ChercherAdherentsListe();
 			return adData;
 		} catch (SQLException e){
@@ -72,35 +72,42 @@ public class PrincipaleViewController {
 			throw e;
 		}
 	}
+
+	//ComboBox Representation
 	public ObservableList<Representation> searchRepresentation() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
-			//Get all Employees information
+			//Donne toute les information de "Representation"
 			ObservableList<Representation> repData = RepresentationDAO.ChercherRepresentationsListe();
 			return repData;
-			//  ObservableList<Representation> repData = RepresentationDAO.searchRepresentations();
 		} catch (SQLException e){
 			System.out.println("Error occurred while getting representations information from DB.\n" + e);
 			throw e;
 		}
 	}
-	
+
+	// METHODE me permettant de calculer le tarif
 	public void CalculTarif() throws NumberFormatException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-	Representation represent = representationField.getSelectionModel().getSelectedItem();
-	double tarif = representation.tarif();
-	prixTotalField.setText(Double.toString((Integer.parseInt(nbrPersonneField.getText()))));
-		}
+		// SelectModel et SelectItem sont les representation ou j'ai cliqué
+		Representation represent = representationField.getSelectionModel().getSelectedItem();
+		// Chercher dans representation le tarif de la representation.
+		double tarif = representation.tarif();		// 
+		prixTotalField.setText(Double.toString((Integer.parseInt(nbrPersonneField.getText()))*tarif));
+	}
+
 
 	@FXML
 	private void initialize(){
-	nbrPersonneField.setText("1");
-	prixTotalField.setPromptText("0");
-		}
+		nbrPersonneField.setText("1");
+		//prixTotalField.setPromptText("0");
+	}
+
+
 	// Bouton Valider permet de valider la reservation
 	@FXML
 	private void handleValider() {
 	}          
 
-	
+
 	// Bouton "Quitter" permet de fermer l'application
 	@FXML
 	private void handleQuitter() {

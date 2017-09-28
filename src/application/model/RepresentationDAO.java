@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 public class RepresentationDAO {
 
 	public static Representation ChercherRepresentation(int numRepresentation) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-		String selectStmt = "SELECT * FROM repesentation  WHERE numRepresentation = "+numRepresentation ;
+		String selectStmt = "SELECT * FROM repesentation  WHERE numRepresentation = " +numRepresentation ;
 		
 		try {
 			ResultSet rsRep = DBUtil.dbExecuteQuery(selectStmt);
@@ -25,7 +25,7 @@ public class RepresentationDAO {
 				rep.setTarif(rsRep.getDouble("tarif"));
 			}	
 			return rep;	
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("SQL select operation has been failed: " + e);
 			//Return exception
 			throw e;
