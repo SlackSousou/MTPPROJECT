@@ -27,9 +27,9 @@ public class PrincipaleViewController {
 	@FXML
 	private ComboBox<Representation> representationField;
 	@FXML
-	public static TextField nbrPersonneField ; 
+	public  TextField nbrPersonneField ; 
 	@FXML
-	public static TextField prixTotalField ; 
+	public  TextField prixTotalField ; 
 
 
 
@@ -57,11 +57,7 @@ public class PrincipaleViewController {
 		this.representation = representation;
 		ObservableList<Adherent> optionsAd =  AdherentDAO.ChercherAdherentsListe();
 		ObservableList<Representation> optionsRep =  RepresentationDAO.ChercherRepresentationsListe();
-		RepresentationDAO.CalculTarif();
-		
-		//RepresentationDAO.selectRepresentation(nbrPersonneField.getText(), prixTotalField.getText());
-		
-		
+		CalculTarif();
 		}
 		
 	
@@ -87,13 +83,17 @@ public class PrincipaleViewController {
 			throw e;
 		}
 	}
-
-
 	
+	public void CalculTarif() throws NumberFormatException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+	Representation represent = representationField.getSelectionModel().getSelectedItem();
+	double tarif = representation.tarif();
+	prixTotalField.setText(Double.toString((Integer.parseInt(nbrPersonneField.getText()))));
+		}
+
 	@FXML
 	private void initialize(){
-	//nbrPersonneField.setText("1");
-	//prixTotalField.setText("0");
+	nbrPersonneField.setText("1");
+	prixTotalField.setPromptText("0");
 		}
 	// Bouton Valider permet de valider la reservation
 	@FXML

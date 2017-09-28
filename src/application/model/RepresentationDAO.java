@@ -11,11 +11,33 @@ import javafx.collections.ObservableList;
 
 public class RepresentationDAO {
 
+	public static Representation ChercherRepresentation(int numRepresentation) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+		String selectStmt = "SELECT * FROM repesentation  WHERE numRepresentation = "+numRepresentation ;
+		
+		try {
+			ResultSet rsRep = DBUtil.dbExecuteQuery(selectStmt);
+			Representation rep = new Representation();
+			while (rsRep.next()) {
+
+				rep.setNumRepresentation((rsRep.getInt("numRepresentation")));
+				rep.setNomSpectacle(rsRep.getString("nomSpectacle"));
+				rep.setDateRepresentation(rsRep.getDate("dateRepresentation").toLocalDate());
+				rep.setTarif(rsRep.getDouble("tarif"));
+			}	
+			return rep;	
+		}catch (SQLException e) {
+			System.out.println("SQL select operation has been failed: " + e);
+			//Return exception
+			throw e;
+		}
+				
+	}
 
 	// Methode pour trouver un Representation en selection seulement les 
 	public static ObservableList<Representation> ChercherRepresentationsListe () throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		//Declare a SELECT statement
 		String selectStmt = "SELECT * FROM representation, spectacle WHERE representation.numSpectacle = spectacle.numSpectacle";
+
 
 		//Execute SELECT statement
 		try {
@@ -28,8 +50,8 @@ public class RepresentationDAO {
 
 			//Return Representation object
 			return repList;
-			
-			
+
+
 		} catch (SQLException e) {
 			System.out.println("SQL select operation has been failed: " + e);
 			//Return exception
@@ -42,20 +64,18 @@ public class RepresentationDAO {
 		//Declare a observable List which comprises of Representation objects
 		ObservableList<Representation> repList = FXCollections.observableArrayList();
 
-		  while (rs.next()) {
-	            Representation rep = new Representation();
-	            rep.setNumRepresentation((rs.getInt("numRepresentation")));
-	            rep.setNomSpectacle(rs.getString("nomSpectacle"));
-	            rep.setDateRepresentation(rs.getDate("dateRepresentation").toLocalDate());
-	            rep.setTarif(rs.getDouble("tarif"));
-	            //Add employee to the ObservableList
-	            repList.add(rep);
-	        }
-	        //return repList (ObservableList of Employees)
-	        return repList;
-	    }
-	public static void CalculTarif() {
-		PrincipaleViewController.prixTotalField.setText(Double.toString((Integer.parseInt(PrincipaleViewController.nbrPersonneField.getText()) * Representation.tarif)));
+		while (rs.next()) {
+			Representation rep = new Representation();
+			rep.setNumRepresentation((rs.getInt("numRepresentation")));
+			rep.setNomSpectacle(rs.getString("nomSpectacle"));
+			rep.setDateRepresentation(rs.getDate("dateRepresentation").toLocalDate());
+			rep.setTarif(rs.getDouble("tarif"));
+			//Add employee to the ObservableList
+			repList.add(rep);
 		}
+		//return repList (ObservableList of Representation)
+		return repList;
+	}
+
 
 }

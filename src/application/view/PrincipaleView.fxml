@@ -33,7 +33,7 @@
             <ComboBox fx:id="adherentField" prefWidth="150.0" GridPane.columnIndex="1" />
             <ComboBox fx:id="representationField" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="nbrPersonneField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="prixTotalField" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="prixTotalField" accessibleRole="IMAGE_VIEW" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <ButtonBar layoutX="129.0" layoutY="212.0" prefHeight="40.0" prefWidth="457.0">
