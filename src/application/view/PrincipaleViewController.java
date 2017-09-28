@@ -8,6 +8,8 @@ import application.model.Adherent;
 import application.model.AdherentDAO;
 import application.model.Representation;
 import application.model.RepresentationDAO;
+import application.util.DateUtil;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -25,9 +27,9 @@ public class PrincipaleViewController {
 	@FXML
 	private ComboBox<Representation> representationField;
 	@FXML
-	private TextField NbrPersonneField ; 
+	public static TextField nbrPersonneField ; 
 	@FXML
-	private TextField prixTotalField ; 
+	public static TextField prixTotalField ; 
 
 
 
@@ -55,7 +57,14 @@ public class PrincipaleViewController {
 		this.representation = representation;
 		ObservableList<Adherent> optionsAd =  AdherentDAO.ChercherAdherentsListe();
 		ObservableList<Representation> optionsRep =  RepresentationDAO.ChercherRepresentationsListe();
-	}
+		RepresentationDAO.CalculTarif();
+		
+		//RepresentationDAO.selectRepresentation(nbrPersonneField.getText(), prixTotalField.getText());
+		
+		
+		}
+		
+	
 
 	public ObservableList<Adherent> searchAdherent() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
@@ -80,16 +89,21 @@ public class PrincipaleViewController {
 	}
 
 
+	
 	@FXML
 	private void initialize(){
-		NbrPersonneField.setText("1");
+	//nbrPersonneField.setText("1");
+	//prixTotalField.setText("0");
 		}
-	// Selection de deux bouton "Valider" et "Quitter"
+	// Bouton Valider permet de valider la reservation
 	@FXML
 	private void handleValider() {
 	}          
 
+	
+	// Bouton "Quitter" permet de fermer l'application
 	@FXML
 	private void handleQuitter() {
+		Platform.exit();
 	}    
 }

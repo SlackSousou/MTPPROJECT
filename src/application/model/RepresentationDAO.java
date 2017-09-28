@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import application.util.DBUtil;
+import application.view.PrincipaleViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -53,6 +54,8 @@ public class RepresentationDAO {
 	        //return repList (ObservableList of Employees)
 	        return repList;
 	    }
-	
+	public static void CalculTarif() {
+		PrincipaleViewController.prixTotalField.setText(Double.toString((Integer.parseInt(PrincipaleViewController.nbrPersonneField.getText()) * Representation.tarif)));
+		}
 
 }

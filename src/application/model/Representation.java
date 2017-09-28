@@ -20,7 +20,7 @@ public class Representation {
 	private int numRepresentation;
 	private String nomSpectacle;
 	private LocalDate dateRepresentation;
-	private  Double tarif;
+	public static  Double tarif;
 
 
 	
